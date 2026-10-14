@@ -7,21 +7,23 @@ carries its own copy of the text pipeline rather than importing it from
 `note_word_bubbles_JetSet.ipynb`. Editing the notebook will not silently change
 what this script draws. The two only need the data files below.
 
-Inputs (both in the parent directory, ../)
+Inputs (in ../../data)
     predictions.csv                      one row per jet: the four probabilities and the note
     mc-flavtag-ttbar-medium_w_Opus.h5    the same jets with truth labels, row-aligned
 
 Output
-    paper_sec3_plots/fig_04a.png   expressions, grouped by Claude's own call
-    paper_sec3_plots/fig_04b.png   the same notes, grouped by truth label
+    figures/fig_04a.png   expressions, grouped by Claude's own call
+    figures/fig_04b.png   the same notes, grouped by truth label
 
 Run with:
-    python make_bubble_plots.py
+    python make_bubble_plots.py [output_dir]    # default: figures/
 """
 from __future__ import annotations
 
 import csv
+import logging
 import re
+import sys
 from collections import Counter, defaultdict
 from itertools import combinations
 from pathlib import Path
@@ -33,14 +35,17 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import matplotlib.patheffects as pe
 
+# Fonts without a semibold face fall back to bold, once per label: don't warn each time.
+logging.getLogger("matplotlib.font_manager").setLevel(logging.ERROR)
+
 # ---------------------------------------------------------------------------
 # Where things are
 # ---------------------------------------------------------------------------
 HERE = Path(__file__).resolve().parent
-RESULTS = HERE.parent                       # the data sits one level up, beside this folder
-CSV_PATH = RESULTS / "predictions.csv"
-JETS_PATH = RESULTS / "mc-flavtag-ttbar-medium_w_Opus.h5"
-SAVE_DIR = HERE / "paper_sec3_plots"
+DATA = HERE.parent.parent / "data"
+CSV_PATH = DATA / "predictions.csv"
+JETS_PATH = DATA / "mc-flavtag-ttbar-medium_w_Opus.h5"
+SAVE_DIR = Path(sys.argv[1]) if len(sys.argv) > 1 else HERE / "figures"
 
 TRUTH_VAR = "HadronGhostTruthLabelID"
 TRUTH_VALUES = {"b": 5, "c": 4, "light": 0, "tau": 15}   # standard ATLAS FTAG convention

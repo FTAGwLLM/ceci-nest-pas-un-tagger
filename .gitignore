@@ -1,0 +1,7 @@
+output/
+__pycache__/
+*.tmp
+preprocessing/regenerated/
+preprocessing/*.h5
+venv/
+plan.md
