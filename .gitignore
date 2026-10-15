@@ -3,5 +3,5 @@ __pycache__/
 *.tmp
 preprocessing/regenerated/
 preprocessing/*.h5
-venv/
+FTAGwLLM/
 plan.md

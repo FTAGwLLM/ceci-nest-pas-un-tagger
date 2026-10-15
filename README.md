@@ -71,7 +71,7 @@ What the experiment measures is how much of the community's accumulated knowledg
 Every figure and number in the paper can be regenerated from the files in [`data/`](data). This requires Python ≥ 3.10.
 
 ```bash
-python3 -m venv venv && source venv/bin/activate    # optional, keeps the packages isolated
+python3 -m venv FTAGwLLM && source FTAGwLLM/bin/activate    # optional, keeps the packages isolated
 pip install -r requirements.txt
 ./reproduce.sh                                      # figures go to output/, or to DIR with ./reproduce.sh DIR
 ```
