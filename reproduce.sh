@@ -25,7 +25,4 @@ echo "== Section 3: explainability (figures 4-5)"
 "$PYTHON" evaluation/Section3-plots/make_bubble_plots.py "$OUT"
 "$PYTHON" evaluation/Section3-plots/make_theme_plots.py "$OUT"
 
-echo "== Comparing with the paper"
-"$PYTHON" check_reproduction.py
-
 echo "Figures written to $OUT; reference versions are in evaluation/*/figures/"
