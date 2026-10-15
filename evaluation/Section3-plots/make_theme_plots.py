@@ -2,11 +2,6 @@
 
 Reproduces figure 5 of the paper, from the run-2 notes.
 
-Self-contained on purpose: this is the reference for a published figure, so it
-carries its own copy of the text pipeline rather than importing it from
-`note_word_bubbles_JetSet.ipynb`. Editing the notebook will not silently change
-what this script draws. The two only need the data files below.
-
 Inputs (in ../../data)
     predictions.csv                      one row per jet: the four probabilities and the note
     mc-flavtag-ttbar-medium_w_Opus.h5    the same jets with truth labels, row-aligned
