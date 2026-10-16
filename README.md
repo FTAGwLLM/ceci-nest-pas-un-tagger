@@ -38,7 +38,7 @@ Flavour tagging is a convenient laboratory for this question. The task is well d
 | **Task** | For each jet, return flavour probabilities (p<sub>b</sub>, p<sub>c</sub>, p<sub>light</sub>, p<sub>τ</sub>) summing to one, with a short rationale in natural language. |
 | **Model** | Claude Opus 5.5 (Anthropic) |
 | **Zero-shot** | No labelled examples and no tagger scores. No classification code, fits, decision rules or hand-built discriminants: the inference must come from the model's own reasoning on the observables. |
-| **Isolation** | The run takes place in a isolated sandbox |
+| **Isolation** | The run takes place in an isolated Docker SBX sandbox|
 
 
 After inference, the truth labels and the scores of the ATLAS taggers GN2 and DL1 are merged back for evaluation.

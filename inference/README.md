@@ -20,5 +20,25 @@
 | Reasoning effort | Max |
 | Agent harness| Claude Code |
 | Permission mode | Bypass Permissions |
-| Sandbox | Docker SBX v0.43.0 |
+| Sandbox | [Docker SBX](https://docs.docker.com/ai/sandboxes/) v0.43.0 |
+
+## Reproduce the run with sbx
+
+Run the model outside this repository, in a directory that contains only the reco-only input file and the TASK.md. The directory is mounted in the sandbox as the agent's workspace.
+
+```bash
+# One-time setup: sign in and set the network policy (required before the first start)
+sbx login
+sbx policy init balanced
+# 1. Prepare an experiment directory outside the repository, with only the task and the input
+mkdir -p ~/ftag-run
+cp TASK.md ~/ftag-run/
+cp ../data/mc-flavtag-ttbar-medium_reco_100k_110k.h5 ~/ftag-run/
+
+# 2. Start Claude Code in a sandbox that mounts only ~/ftag-run
+sbx run --name ftag-opus claude ~/ftag-run
+
+```
+
+The predictions are then merged with the truth labels as described in [Protocol of the paper run](#protocol-of-the-paper-run) and [`../preprocessing`](../preprocessing).
 
